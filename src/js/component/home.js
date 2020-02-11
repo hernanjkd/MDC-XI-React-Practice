@@ -27,7 +27,15 @@ export function Home() {
 					}}
 				/>
 				{list.map((item, index) => {
-					return <div key={index}>{item}</div>;
+					return (
+						<div
+							key={index}
+							onClick={() =>
+								setList(list.filter(e => e !== item))
+							}>
+							{item}
+						</div>
+					);
 				})}
 			</div>
 		</>
