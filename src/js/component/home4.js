@@ -3,7 +3,8 @@ import React, { useState } from "react";
 //create your first component
 export function Home() {
 	const [list, setList] = useState([]);
-	const [content, setContent] = useState();
+	const [content, setContent] = useState("");
+	const [remove, setRemove] = useState();
 
 	return (
 		<>
@@ -19,8 +20,8 @@ export function Home() {
 				<input
 					value={content}
 					onChange={e => setContent(e.target.value)}
-					onKeyPress={e => {
-						if (e.key === "Enter") {
+					onKeyPress={event => {
+						if (event.key === "Enter") {
 							setList(list.concat(content));
 							setContent("");
 						}
@@ -37,6 +38,14 @@ export function Home() {
 						</div>
 					);
 				})}
+				<input
+					onChange={e => setRemove(e.target.value)}
+					onKeyPress={e => {
+						if (e.key === "Enter") {
+							setList(list.filter(e => e !== remove));
+						}
+					}}
+				/>
 			</div>
 		</>
 	);
